@@ -73,4 +73,8 @@ class Loader
 	public function gComponent($className){
 		return $this->component[$className];
 	}
+
+	public function __call($name,$arguments){
+		echo $name;
+	}
 }

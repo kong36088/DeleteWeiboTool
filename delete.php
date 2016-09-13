@@ -1,5 +1,4 @@
 <?php
-require_once ('./Functional/Core.php');
 
 /**
  * Created by PhpStorm.
@@ -7,8 +6,10 @@ require_once ('./Functional/Core.php');
  * Date: 2016/9/13
  * Time: 0:15
  */
+require_once ('Functional/Core.php');
+
 class Delete extends Core{
-	public function index(){
+	public function delAll(){
 
 	}
 }

@@ -1,5 +1,5 @@
 <?php
-require_once('../common.php');
+require_once('common.php');
 
 /**
  * Created by PhpStorm.
@@ -13,6 +13,9 @@ class Core
 
 	public function __construct()
 	{
-		$this->Loader = new Loader();
+		$this->Loader = Factory::getLoader();
+		if(!$_SESSION['user_name']){
+
+		}
 	}
 }
