@@ -65,4 +65,7 @@ class Http
 	public function httpStatus($num){
 		if(!empty($num)) header('HTTP/1.1 '.self::_status[$num]);
 	}
+	public function test(){
+		echo 123;
+	}
 }

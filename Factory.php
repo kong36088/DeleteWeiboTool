@@ -18,4 +18,8 @@ class Factory
 		self::$loader = new Loader();
 		return self::$loader;
 	}
+
+	public static function setLoader(Loader $Loader){
+		self::$loader = $Loader;
+	}
 }
