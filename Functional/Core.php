@@ -14,20 +14,14 @@ require_once('common.php');
  */
 class Core
 {
-	protected $Loader;
+	protected $load;
 
 	public function __construct()
 	{
-		$this->Loader = Factory::getLoader();
-		$this->user_name = $_SESSION['user_name'];
-		$this->user_id = $_SESSION['user_id'];
+		//获取loader
+		$this->load = Factory::getLoader();
+		//设置curl的cookie
+		$this->load->curl->setCookie($this->load->config->get('sina_cookie'));
 	}
 
-	public function checkLogin(){
-		if($_SESSION['user_name']||$_SESSION['user_id']){
-			return TRUE;
-		}else{
-			return FALSE;
-		}
-	}
 }

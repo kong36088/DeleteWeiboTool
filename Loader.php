@@ -19,11 +19,11 @@ class Loader
 
 	public function __construct($config)
 	{
-		$this->config = $config;
 		//自动加载组件
 		foreach ($config['auto_load'] as $key => $component) {
 			$this->component($component);
 		}
+		$this->config->setArray($config);
 	}
 
 	/**

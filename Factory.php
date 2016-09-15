@@ -12,10 +12,6 @@ class Factory
 
 	public static function getLoader()
 	{
-		if (self::$loader) {
-			return self::$loader;
-		}
-		self::$loader = new Loader();
 		return self::$loader;
 	}
 

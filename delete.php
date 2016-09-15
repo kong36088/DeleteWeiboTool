@@ -6,10 +6,60 @@
  * Date: 2016/9/13
  * Time: 0:15
  */
-require_once ('Functional/Core.php');
+require_once('Functional/Core.php');
 
-class Delete extends Core{
-	public function delAll(){
+class Delete extends Core
+{
+	// TODO 加入删除开始序号
+	public function start($loopTimes = 1)
+	{
+		//循环执行次数
+		for ($i = 0, $failTimes = 0; $i < $loopTimes;) {
+			$content = $this->getContent();
+			if (!$content) {
+				if ($failTimes < 10) {
+					continue;
+				} else {
+					die('获取微博内容失败，请访问用浏览器访问一下微博页面并刷新');
+				}
+			}
+			$WeiboIds = $this->getAllWeiboId($content);
+			foreach ($WeiboIds as $wid) {
+				echo '删除id为：' . $wid . '的微博' . PHP_EOL;
+				var_dump($this->delWeiboById($wid, $this->load->config->get('delWeiboApi')));
+			}
+			$i++;
+		}
 
 	}
+
+	/**
+	 * 正则获取页面上所有微博的ID
+	 */
+	protected function getAllWeiboId($content)
+	{
+		$regx = '/,\"idstr\"\:\"([^\"]*)/';
+		preg_match_all($regx, $content, $matchs);
+		return $matchs[1];
+	}
+
+	/**
+	 * 获取个人微博页面内容
+	 */
+	protected function getContent()
+	{
+		return $this->load->curl->request('GET', $this->load->config->get('self_page_url'), $this->load->config->get('sina_phone_header'));
+	}
+
+	/**
+	 * 删除微博接口
+	 * @param array $WeiboIds 正则获取到的微博id
+	 */
+	protected function delWeiboById($WeiboId = array(), $url)
+	{
+		return $this->load->curl->request('POST', $this->load->config->get('self_page_url'), $this->load->config->get('sina_phone_delete_header'),array('id'=>$WeiboId));
+	}
 }
+
+$delete = new Delete();
+$delete->start();
