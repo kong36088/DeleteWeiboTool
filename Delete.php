@@ -17,7 +17,7 @@ class Delete extends Core
 		for ($i = 0, $failTimes = 0; $i < $loopTimes || $deleteAll;) {
 			$content = $this->getContent();
 			if (!$content) {
-				if ($failTimes < 10) {
+				if ($failTimes < 20) {
 					$failTimes++;
 					echo "获取页面失败，正在重试".$failTimes."...  ".PHP_EOL;
 					sleep(10);
