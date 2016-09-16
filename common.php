@@ -5,7 +5,8 @@
  * Date: 2016/9/12
  * Time: 17:52
  */
-
+//不超时
+set_time_limit(0);
 require_once('Config/config.php');
 require_once('Config/database.php');
 if($config['debug']===TRUE) {

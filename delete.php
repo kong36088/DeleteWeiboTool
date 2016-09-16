@@ -11,32 +11,36 @@ require_once('Functional/Core.php');
 class Delete extends Core
 {
 	// TODO 加入删除开始序号
-	public function start($loopTimes = 1)
+	public function start($loopTimes = 1, $deleteAll = 0)
 	{
 		//循环执行次数
-		for ($i = 0, $failTimes = 0; $i < $loopTimes;) {
+		for ($i = 0, $failTimes = 0; $i < $loopTimes || $deleteAll;) {
 			$content = $this->getContent();
 			if (!$content) {
 				if ($failTimes < 2) {
 					$failTimes++;
 					continue;
 				} else {
-					die('获取微博内容失败，请访问用浏览器访问一下微博页面并刷新');
+					die('获取微博内容失败，请访问用浏览器访问一下微博页面并刷新，重新设置cookie');
 				}
 			}
+			$failTimes = 0;
 			$WeiboIds = $this->getAllWeiboId($content);
+			if (empty($WeiboIds)) {
+				die('已经没有微博了或获取微博失败，请重试');
+			}
 			foreach ($WeiboIds as $wid) {
 				$de = $this->delWeiboById($wid);
-				if($de){
+				if ($de) {
 					echo '删除id为：' . $wid . '的微博' . PHP_EOL;
-				}else{
+				} else {
 					echo '删除id为：' . $wid . '的微博失败' . PHP_EOL;
 				}
 				sleep(1);
 			}
 			$i++;
 			//防止操作太快
-			sleep(2);
+			sleep(10);
 		}
 
 	}
@@ -65,10 +69,10 @@ class Delete extends Core
 	 */
 	public function delWeiboById($WeiboId = '')
 	{
-		$result = $this->load->curl->request('POST', $this->load->config->get('del_weibo_api'), $this->load->config->get('sina_phone_delete_header'),array('id'=>(string)$WeiboId));
+		$result = $this->load->curl->request('POST', $this->load->config->get('del_weibo_api'), $this->load->config->get('sina_phone_delete_header'), array('id' => (string)$WeiboId));
 		return $result;
 	}
 }
 
 $delete = new Delete();
-$delete->start();
+$delete->start(10, 0);

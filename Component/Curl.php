@@ -21,7 +21,7 @@ class Curl
 	{
 		//$cookiePath = self::initCookie($url);
 		$ch = curl_init($url);
-		curl_setopt($ch, CURLOPT_HEADER, 0);
+		curl_setopt($ch, CURLOPT_HEADER, 1);
 		curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
@@ -36,7 +36,6 @@ class Curl
 			curl_setopt($ch, CURLOPT_COOKIE, $this->cookie);
 		}
 		$result = curl_exec($ch);
-		print_r(curl_getinfo($ch));
 		curl_close($ch);
 		return $result;
 	}
