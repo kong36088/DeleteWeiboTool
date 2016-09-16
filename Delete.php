@@ -30,6 +30,7 @@ class Delete extends Core
 			$WeiboIds = $this->getAllWeiboId($content);
 			if (empty($WeiboIds)) {
 				die('已经没有微博了或获取微博失败，请重试');
+				//echo '已经没有微博了或获取微博失败，请重试';
 			}
 			foreach ($WeiboIds as $wid) {
 				$de = $this->delWeiboById($wid);
