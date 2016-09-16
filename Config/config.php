@@ -13,8 +13,6 @@ $config['del_weibo_api'] = 'http://m.weibo.cn/mblogDeal/delMyMblog';
 /**************必填项目*******************/
 $config['base_path'] = '/var/www/html/DelWeibo/';//代码根目录位置
 
-$config['base_url'] = 'vm2/';//项目的根url，比如http://localhost/DelWeibo/
-
 //登陆后新浪的cookie，用chrome浏览器登陆微博后，打开F12开发者工具查看微博页面request请求中请求的cookie值，复制到该处
 $config['sina_cookie'] = '_T_WM=d7193bc43fd5bfa00880f0763000b0c9; ALF=1476536754; SCF=AuHRnn-UiRFN2SLuvt-YUI_wB4PePW0GLrj-HMqvAm2AEXCHxSN9LrdWMpRpV8xLzNiPuojOMMoUL5YmVEn4DNM.; SUB=_2A2563s9qDeTxGedI6loZ8ifKwz-IHXVWINEirDV6PUJbktBeLW7TkW2eFHi1jla6wzJtO_NuLFR6Rh_hZw..; SUBP=0033WrSXqPxfM725Ws9jqgMF55529P9D9WFjyNj8jSg1PXxFzv8CrJXN5JpX5o2p5NHD95QpSo2R1hz4Son0Ws4DqcjlC.LWK.UPx-LeKX4GxXUG; SUHB=0jB5fTjdSLvJBg; SSOLoginState=1473953594; H5_INDEX=3; H5_INDEX_TITLE=JIANGWEILONGGGG; M_WEIBOCN_PARAMS=featurecode%3D20000181%26fid%3D1005051618829683_-_WEIBO_SECOND_PROFILE_WEIBO%26uicode%3D10000012';
 

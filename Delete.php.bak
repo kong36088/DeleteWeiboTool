@@ -17,8 +17,9 @@ class Delete extends Core
 		for ($i = 0, $failTimes = 0; $i < $loopTimes || $deleteAll;) {
 			$content = $this->getContent();
 			if (!$content) {
-				if ($failTimes < 2) {
+				if ($failTimes < 5) {
 					$failTimes++;
+					sleep(1);
 					continue;
 				} else {
 					die('获取微博内容失败，请访问用浏览器访问一下微博页面并刷新，重新设置cookie');
@@ -75,4 +76,4 @@ class Delete extends Core
 }
 
 $delete = new Delete();
-$delete->start(10, 0);
+$delete->start(10, 1);
