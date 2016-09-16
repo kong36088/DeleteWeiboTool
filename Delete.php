@@ -19,7 +19,7 @@ class Delete extends Core
 			if (!$content) {
 				if ($failTimes < 5) {
 					$failTimes++;
-					sleep(5);
+					sleep(10);
 					continue;
 				} else {
 					die('获取微博内容失败，请访问用浏览器访问一下微博页面并刷新，重新设置cookie');

@@ -26,7 +26,7 @@ class Curl
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
 		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 120);
-		curl_setopt($ch,CURLOPT_HTTP_VERSION ,CURL_HTTP_VERSION_1_1 );
+		curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
 		if (strtoupper($method) == 'POST') {
 			curl_setopt($ch, CURLOPT_POST, 1);
 			curl_setopt($ch, CURLOPT_POSTFIELDS, $fields);
@@ -36,7 +36,11 @@ class Curl
 			curl_setopt($ch, CURLOPT_COOKIE, $this->cookie);
 		}
 		$result = curl_exec($ch);
+		$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 		curl_close($ch);
+		if ($httpCode == 404 || $httpCode == 403) {
+			return NULL;
+		}
 		return $result;
 	}
 
