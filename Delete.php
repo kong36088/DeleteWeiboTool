@@ -17,12 +17,13 @@ class Delete extends Core
 		for ($i = 0, $failTimes = 0; $i < $loopTimes || $deleteAll;) {
 			$content = $this->getContent();
 			if (!$content) {
-				if ($failTimes < 5) {
+				if ($failTimes < 10) {
 					$failTimes++;
+					echo "获取页面失败，正在重试".$failTimes."...  ".PHP_EOL;
 					sleep(10);
 					continue;
 				} else {
-					die('获取微博内容失败，请访问用浏览器访问一下微博页面并刷新，重新设置cookie');
+					die('获取微博内容失败，请访问用浏览器访问一下微博页面并刷新，重新设置cookie，或您的IP已被禁用');
 				}
 			}
 			$failTimes = 0;
