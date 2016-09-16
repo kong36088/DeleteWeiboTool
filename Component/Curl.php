@@ -17,14 +17,12 @@ class Curl
 	 * @param  array $fields 执行POST请求时的数据
 	 * @return string           请求结果
 	 */
-	public function request($method, $url, $header = '', $fields = array())
+	public function request($method, $url, $header = '', array $fields = array())
 	{
 		//$cookiePath = self::initCookie($url);
 		$ch = curl_init($url);
 		curl_setopt($ch, CURLOPT_HEADER, 0);
 		curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
-		//curl_setopt($ch, CURLOPT_COOKIEFILE, $cookiePath);
-		//curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 6.1; rv:24.0) Gecko/20100101 Firefox/24.0');
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
 		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 120);
@@ -32,12 +30,6 @@ class Curl
 		if (strtoupper($method) == 'POST') {
 			curl_setopt($ch, CURLOPT_POST, 1);
 			curl_setopt($ch, CURLOPT_POSTFIELDS, $fields);
-			$contentLength = 0;
-			foreach ($fields as $k => $v) {
-				$contentLength += strlen($k . '=' . $v);
-			}
-			$header[] = 'Content-Length:' . (string)$contentLength;
-			print_r($fields);
 		}
 		curl_setopt($ch, CURLOPT_ENCODING, 'gzip');//加入GZIP解析，这一个很重要
 		if ($this->cookie) {

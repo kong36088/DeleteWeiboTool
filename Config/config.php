@@ -56,7 +56,8 @@ $config['sina_phone_delete_header'] = array(
 	'Accept-Encoding:gzip, deflate',
 	'Accept-Language:zh-CN,zh;q=0.8',
 	'Connection:keep-alive',
-	'Content-Type:application/x-www-form-urlencoded; charset=UTF-8',
+	//注意这里content-tpye改成multipart/form-data，在这里卡了不少时间
+	'Content-Type:multipart/form-data; charset=UTF-8',
 );
 
 //自动加载的类，component加载到loader中，
