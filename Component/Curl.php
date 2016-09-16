@@ -28,15 +28,23 @@ class Curl
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
 		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 120);
-		curl_setopt($ch, CURLOPT_ENCODING ,'gzip');//加入GZIP解析，这一个很重要
-		if ($method === 'POST') {
-			curl_setopt($ch, CURLOPT_POST, true);
+		curl_setopt($ch,CURLOPT_HTTP_VERSION ,CURL_HTTP_VERSION_1_1 );
+		if (strtoupper($method) == 'POST') {
+			curl_setopt($ch, CURLOPT_POST, 1);
 			curl_setopt($ch, CURLOPT_POSTFIELDS, $fields);
+			$contentLength = 0;
+			foreach ($fields as $k => $v) {
+				$contentLength += strlen($k . '=' . $v);
+			}
+			$header[] = 'Content-Length:' . (string)$contentLength;
+			print_r($fields);
 		}
+		curl_setopt($ch, CURLOPT_ENCODING, 'gzip');//加入GZIP解析，这一个很重要
 		if ($this->cookie) {
 			curl_setopt($ch, CURLOPT_COOKIE, $this->cookie);
 		}
 		$result = curl_exec($ch);
+		print_r(curl_getinfo($ch));
 		curl_close($ch);
 		return $result;
 	}

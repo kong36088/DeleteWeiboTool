@@ -14,7 +14,7 @@ require_once('common.php');
  */
 class Core
 {
-	protected $load;
+	public $load;
 
 	public function __construct()
 	{

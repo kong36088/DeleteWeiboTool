@@ -8,7 +8,7 @@
 $config = array();
 
 $config['debug'] = TRUE;
-$config['delWeiboApi'] = 'http://m.weibo.cn/mblogDeal/delMyMblog';
+$config['del_weibo_api'] = 'http://m.weibo.cn/mblogDeal/delMyMblog';
 
 /**************必填项目*******************/
 $config['base_path'] = '/var/www/html/DelWeibo/';//代码根目录位置
@@ -47,7 +47,7 @@ $config['sina_phone_header'] = array(
 	'Connection:keep-alive',
 );
 $config['sina_phone_delete_header'] = array(
-	$config['delWeiboApi'],
+	'Referer:' . $config['self_page_url'],
 	'Host:m.weibo.cn',
 	'Origin:http://m.weibo.cn',
 	'User-Agent:Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1',
@@ -56,7 +56,6 @@ $config['sina_phone_delete_header'] = array(
 	'Accept-Encoding:gzip, deflate',
 	'Accept-Language:zh-CN,zh;q=0.8',
 	'Connection:keep-alive',
-	'Content-Length:19',
 	'Content-Type:application/x-www-form-urlencoded; charset=UTF-8',
 );
 
