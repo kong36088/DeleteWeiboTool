@@ -28,4 +28,4 @@ cd /xxx/xxx/DelWeibo
 php Delete.php
 ``` 
 
-详细教程地址：[工具教程](http://www.jwlchina.cn/2016/09/16/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%EF%BC%9A%E5%88%A0%E9%99%A4%E5%BE%AE%E5%8D%9A%E5%B7%A5%E5%85%B7/)
+详细教程地址：[工具教程](http://www.jwlchina.cn/2016/09/17/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%EF%BC%9A%E5%88%A0%E9%99%A4%E5%BE%AE%E5%8D%9A%E5%B7%A5%E5%85%B7/)
